@@ -13,15 +13,26 @@
 =============================================================================*/
 
 #include "annBasicTypes.h"
+#include "annException.h"
 
 namespace ann {
 
+/**
+* Builds a Dense Layer of a neural network.
+* Initializes weights to random floats between 0 and 0.01.
+* @param num_input : the number of inputs to this layer
+* @param num_neurons : the number of neurons in this layer
+* @throws ann::InvalidInteger : nump_input > 0 and num_neuron > 0
+**/
 DenseLayer::DenseLayer(int num_input, int num_neurons){
+  if(num_input <= 0) throw Exception("annBasicTypes.cpp : Invalid number of inputs for dense layer , expected > 0", 27);
+  if(num_neurons <= 0) throw Exception("annBasicTypes.cpp : Invalid number of neurons for dense layer, expected > 0", 28);
+
   for(int i = 0; i < num_input; i++){
     std::vector<float> newWeightsRow = std::vector<float>{};
     for(int j = 0; j < num_neurons; j++){
       float r = static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX);
-      newWeightsRow.push_back(r);
+      newWeightsRow.push_back(r * 0.01);
     }
     weights.push_back(newWeightsRow);
   }
@@ -54,10 +65,10 @@ std::vector<int> DenseLayer::getWeightsShape(){
 **/
 float DenseLayer::getWeightAt(int neuron, int input){
   if(neuron >= weights.size()){
-    //TODO: throw an exception
+    throw Exception("annBasicTypes.cpp : Invalid neuron index", 67);
   }
   if(input >= weights[neuron].size()){
-    //TODO: throw an exception
+    throw Exception("annBasicTypes.cpp : Invalid input index", 70);
   }
   return weights[neuron][input];
 }
@@ -70,7 +81,7 @@ float DenseLayer::getWeightAt(int neuron, int input){
 **/
 float DenseLayer::getBiasAt(int neuron){
   if(neuron >= biases.size()){
-    //TODO: throw an exception
+    throw Exception("annBasicTypes.cpp : Invalid neuron index", 83);
   }
   return biases[neuron];
 }
