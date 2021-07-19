@@ -51,6 +51,21 @@ TEST_CASE("dot product: two vectors", "[ann:dot(std::vector<float>, std::vector<
 }
 
 /**
+* Test dot product for left-vector and right matrix
+*/
+TEST_CASE("dot product: left-vector dot right-matrix", "[ann:dot(std::vector<float>, std::vector<std::vector<float>>)]") {
+  std::vector<float> v{1,2};
+  std::vector<std::vector<float>> mat{{1, 2, 3, 4}, {11 , 22, 33, 44}};
+  std::vector<float> expected{1+11 + 2*(1+11), 2+22 +2*(2+22), 3+33 + 2*(3+33), 4+44 + 2*(4+44)};
+  REQUIRE(ann::dot(v, mat) == expected);
+
+  std::vector<float> v2{-1, 2};
+  std::vector<std::vector<float>> mat2{{1,-2,-3,4}, {-11, 22, 33, -44}};
+  std::vector<float> expected2{-1+11 + 2*(1 - 11), 2-22 + 2*(-2 + 22), 3-33 + 2*(-3 + 33), -4+44 + 2*(4 - 44)};
+  REQUIRE(ann::dot(v2, mat2) == expected2);
+}
+
+/**
 * Unit tests for Dense Layer Object
 **/
 
