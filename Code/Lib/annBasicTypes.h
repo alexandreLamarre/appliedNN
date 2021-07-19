@@ -16,6 +16,8 @@
 #define annBasicTypes_h
 
 #include "annWin32ExportHeader.h"
+#include <cstdlib>
+#include <vector>
 
 /**
 * \defgroup internal internal
@@ -46,6 +48,20 @@
 //! Single namespace for all code in this package
 namespace ann
 {
+
+class DenseLayer{
+  public:
+    DenseLayer(int, int);
+    void forward_propagation(std::vector<int>);
+    std::vector<float> getOutput(std::vector<float>);
+    std::vector<int> getWeightsShape();
+    float getWeightAt(int neuron, int input);
+    float getBiasAt(int neuron);
+  private:
+    std::vector<std::vector<float>> weights;
+    std::vector<float> biases;
+    std::vector<float> outputs;
+};
 
 } // end namespace
 

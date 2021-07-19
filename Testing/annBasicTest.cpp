@@ -15,6 +15,7 @@
 #include "catch.hpp"
 #include "annCatchMain.h"
 #include "annMyFunctions.h"
+#include "annBasicTypes.h"
 #include <iostream>
 #include <vector>
 
@@ -30,4 +31,15 @@ TEST_CASE( "My second test", "[some group identifier]" ) {
 
 TEST_CASE( "Simple add", "[MyFirstAddFunction]") {
   REQUIRE( ann::MyFirstAddFunction(1, 2) == 3);
+}
+
+/**
+* Unit tests for Dense Layer Object
+**/
+TEST_CASE("Dense Layer Constructor 1", "[DenseLayer::DenseLayer]"){
+  int num_inputs = 2; int num_neurons = 3;
+  ann::DenseLayer dl = ann::DenseLayer(num_inputs, num_neurons);
+
+  REQUIRE(dl.getWeightsShape()[0] == 2);
+  REQUIRE(dl.getWeightsShape()[1] == 3);
 }
