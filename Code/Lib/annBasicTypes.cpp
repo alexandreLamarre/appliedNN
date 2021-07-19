@@ -100,10 +100,15 @@ std::vector<float> DenseLayer::getOutput(){
 **/
 void DenseLayer::forward_propagation(std::vector<float> inputs){
   if(inputs.size() != weights.size()){
-    throw Exception("annBasicTypes.cpp : Mistached input size and expected layer input size", 103);
+    throw Exception("annBasicTypes.cpp : Mismatched actual input size and expected layer input size", 103);
   }
-
-  //np.dot(inputs, weights) + biases
+  outputs = dot(inputs, weights);
+  if(outputs.size() != biases.size()){
+    throw Exception("annBasicTypes.cpp : Mismatched output layer size and biases size", 108);
+  }
+  for(int i = 0; i < outputs.size(); i++){
+    outputs[i] += biases[i];
+  }
 }
 
 

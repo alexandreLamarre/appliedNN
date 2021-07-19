@@ -70,7 +70,7 @@ TEST_CASE("dot product: left-vector dot right-matrix", "[ann:dot(std::vector<flo
 **/
 
 /**
-* Test constructor and weights shape
+* Test constructor intializes weights to the correct shape
 **/
 TEST_CASE("Dense Layer Constructor 1", "[DenseLayer::DenseLayer]"){
   int num_inputs = 2; int num_neurons = 3;
@@ -103,4 +103,18 @@ TEST_CASE("Dense Layer Constructor 2", "[DenseLayer::DenseLayer]"){
   for(int i = 0; i < num_neurons; i++){
     REQUIRE(dl.getBiasAt(i) == 0);
   }
+}
+
+/**
+* Test that forward propagation works as expected
+**/
+TEST_CASE("Dense Layer : Test forward propagation", "[DenseLayer::forward_propagation]"){
+  ann::DenseLayer dl = ann::DenseLayer(2,4);
+
+  std::vector<float> inputs{0,0};
+  dl.forward_propagation(inputs);
+  REQUIRE(dl.getOutput().size() == 4);
+  std::vector<float> empty_vector{0,0,0,0};
+  REQUIRE(dl.getOutput() == empty_vector);
+
 }

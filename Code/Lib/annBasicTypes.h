@@ -18,6 +18,7 @@
 #include "annWin32ExportHeader.h"
 #include <cstdlib>
 #include <vector>
+#include "annMyFunctions.h"
 
 /**
 * \defgroup internal internal
