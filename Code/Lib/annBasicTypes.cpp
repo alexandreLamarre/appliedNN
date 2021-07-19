@@ -86,5 +86,25 @@ float DenseLayer::getBiasAt(int neuron){
   return biases[neuron];
 }
 
+/**
+* Returns the current state of the output for this layer
+* @returns vector of current output values for this layer
+**/
+std::vector<float> DenseLayer::getOutput(){
+  return outputs;
+}
+
+/**
+* Forward propagate the given input values through the layer
+* @param 
+**/
+void DenseLayer::forward_propagation(std::vector<float> inputs){
+  if(inputs.size() != weights.size()){
+    throw Exception("annBasicTypes.cpp : Mistached input size and expected layer input size", 103);
+  }
+
+  //np.dot(inputs, weights) + biases
+}
+
 
 } // end namespace

@@ -16,6 +16,8 @@
 #define annMyFunctions_h
 
 #include "annWin32ExportHeader.h"
+#include "annException.h"
+#include <vector>
 
 /**
 * \file annMyFunctions.h
@@ -30,6 +32,15 @@ namespace ann
 */
 APPLIEDNEURALNETWORKS_WINEXPORT int MyFirstAddFunction(int a, int b);
 
+/**
+* \brief Dot product for a vector and a matrix
+*/
+APPLIEDNEURALNETWORKS_WINEXPORT std::vector<float>  dot(std::vector<float> v, std::vector<std::vector<float>> mat);
+
+/**
+* \brief Dot product for two vectors
+*/
+APPLIEDNEURALNETWORKS_WINEXPORT float dot(std::vector<float> x, std::vector<float> y);
 } // end namespace
 
 #endif

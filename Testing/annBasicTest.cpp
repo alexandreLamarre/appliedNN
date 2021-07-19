@@ -34,6 +34,23 @@ TEST_CASE( "Simple add", "[MyFirstAddFunction]") {
 }
 
 /**
+* Unit tests for dot product functions
+**/
+
+/**
+* Test dot product for two vectors
+*/
+TEST_CASE("dot product: two vectors", "[ann:dot(std::vector<float>, std::vector<float>)]") {
+  std::vector<float> v1{1, 2, 3};
+  std::vector<float> v2{4, 5, 6};
+  REQUIRE(ann::dot(v1, v2) == 4 + 10 + 18);
+
+  std::vector<float> v3{-1, 2, 3};
+  std::vector<float> v4{-4, -5, 6};
+  REQUIRE(ann::dot(v3, v4) == 4 - 10 + 18);
+}
+
+/**
 * Unit tests for Dense Layer Object
 **/
 
@@ -46,6 +63,11 @@ TEST_CASE("Dense Layer Constructor 1", "[DenseLayer::DenseLayer]"){
 
   REQUIRE(dl.getWeightsShape()[0] == 2);
   REQUIRE(dl.getWeightsShape()[1] == 3);
+
+  num_inputs = 1541; num_neurons = 4987;
+  dl = ann::DenseLayer(num_inputs, num_neurons);
+  REQUIRE(dl.getWeightsShape()[0] == 1541);
+  REQUIRE(dl.getWeightsShape()[1] == 4987);
 }
 
 /**

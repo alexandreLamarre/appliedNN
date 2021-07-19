@@ -52,8 +52,8 @@ namespace ann
 class DenseLayer{
   public:
     DenseLayer(int, int);
-    void forward_propagation(std::vector<int>);
-    std::vector<float> getOutput(std::vector<float>);
+    void forward_propagation(std::vector<float>);
+    std::vector<float> getOutput();
     std::vector<int> getWeightsShape();
     float getWeightAt(int neuron, int input);
     float getBiasAt(int neuron);
